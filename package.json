@@ -24,8 +24,13 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.4.0",
     "@openzeppelin/contracts-upgradeable": "^4.4.0",
+    "@truffle/hdwallet-provider": "^1.7.0",
+    "dotenv": "^10.0.0",
     "ganache-cli": "^6.12.2",
     "openzeppelin-solidity": "^4.4.0",
     "truffle": "^5.4.22"
+  },
+  "devDependencies": {
+    "truffle-deployments": "^0.1.1"
   }
 }

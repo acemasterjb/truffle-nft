@@ -17,8 +17,18 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+ require('dotenv').config()
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+var MNEUMONIC = null;
+if (!(process.env.MNEUMONIC == null) || !(process.env.MNEUMONIC == "")) {
+  MNEUMONIC = process.env.MNEUMONIC;
+}
+
+var PRIVATE_KEYS = process.env.PRIVATE_KEYS.split(",");
+
+var INFURA_KEY = process.env.INFURA_KEY == null ? "bc0266c92ce34146865122a0b095f44c" : process.env.INFURA_KEY;
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
@@ -41,11 +51,51 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 8545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
+    testnet: {
+      provider: new HDWalletProvider({
+        mnemonic: MNEUMONIC == null ? null : {
+          phrase: MNEUMONIC
+        },
+        privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
+        providerOrUrl: "https://data-seed-prebsc-2-s2.binance.org:8545/",
+        chainId: 97
+      }),
+      gas: 2000000,
+      gasPrice: 6300000000
+    },
+    bscMainnet: {
+      provider: new HDWalletProvider({
+        mnemonic: MNEUMONIC == null ? null : {
+          phrase: MNEUMONIC
+        },
+        privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
+        providerOrUrl: "https://bsc-dataseed.binance.org/",
+        chainId: 56
+      }),
+      gasPrice: 6300000000
+    },
+    mainnet: {
+      provider: new HDWalletProvider(
+        {
+          mnemonic: MNEUMONIC == null ? null : {
+            phrase: MNEUMONIC
+          },
+          privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
+          providerOrUrl: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
+          chainId: 1
+        },
+      ),
+      gas: 2000000,
+      gasPrice: 160463534099,
+    },
+    etherscan: {
+      apikey: process.env.ETHERSCAN
+    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -75,23 +125,24 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    // timeout: 100000
+    timeout: 1000000
   },
 
   // Configure your compilers
-  compilers: {
-    solc: {
-      version: "0.8.10",    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
-    }
-  },
+  compilers:
+    {
+      solc: {
+        version: "0.8.4",       // Fetch exact version from solc-bin (default: truffle's version)
+        // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+        settings: {          // See the solidity docs for advice about optimization and evmVersion
+         optimizer: {
+           enabled: true,
+        //    runs: 200
+         },
+        //  evmVersion: "byzantium"
+        }
+      }
+    },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
   // false to enabled: true. The default storage location can also be
