@@ -31,6 +31,7 @@
     "truffle": "^5.4.22"
   },
   "devDependencies": {
+    "@openzeppelin/truffle-upgrades": "^1.11.0",
     "truffle-deployments": "^0.1.1"
   }
 }
