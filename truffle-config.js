@@ -22,13 +22,13 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 var MNEMONIC = null;
-if (!(process.env.MNEMONIC == null) || !(process.env.MNEMONIC == "")) {
+if (!(process.env.MNEMONIC == "")) {
   MNEMONIC = process.env.MNEMONIC;
 }
 
 var PRIVATE_KEYS = process.env.PRIVATE_KEYS.split(",");
 
-var INFURA_KEY = process.env.INFURA_KEY == null ? "bc0266c92ce34146865122a0b095f44c" : process.env.INFURA_KEY;
+var INFURA_KEY = process.env.INFURA_KEY == "" ? "bc0266c92ce34146865122a0b095f44c" : process.env.INFURA_KEY;
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
@@ -120,7 +120,7 @@ module.exports = {
     // }
   },
   etherscan: {
-    apikey: process.env.ETHERSCAN == null ? null : process.env.ETHERSCAN
+    apikey: process.env.ETHERSCAN == "" ? null : process.env.ETHERSCAN
   },
   // Set default mocha options here, use special reporters etc.
   mocha: {
