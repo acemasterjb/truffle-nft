@@ -1,0 +1,30 @@
+{
+  "name": "truffle-nft",
+  "version": "1.0.0",
+  "description": "zapproject/hardhat-bsc nft contracts migration to truffle",
+  "main": "index.js",
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acemasterjb/truffle-nft.git"
+  },
+  "keywords": [
+    "truffle",
+    "ethereum",
+    "nft"
+  ],
+  "author": "Jamil Bousquet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acemasterjb/truffle-nft/issues"
+  },
+  "homepage": "https://github.com/acemasterjb/truffle-nft#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.0",
+    "@openzeppelin/contracts-upgradeable": "^4.4.0",
+    "openzeppelin-solidity": "^4.4.0",
+    "truffle": "^5.4.22"
+  }
+}
