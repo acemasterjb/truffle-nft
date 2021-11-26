@@ -28,7 +28,8 @@
     "dotenv": "^10.0.0",
     "ganache-cli": "^6.12.2",
     "openzeppelin-solidity": "^4.4.0",
-    "truffle": "^5.4.22"
+    "truffle": "^5.4.22",
+    "web3": "^1.6.1"
   },
   "devDependencies": {
     "@openzeppelin/truffle-upgrades": "^1.11.0",
