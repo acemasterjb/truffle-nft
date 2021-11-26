@@ -17,7 +17,7 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
- require('dotenv').config()
+require('dotenv').config()
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
@@ -52,9 +52,9 @@ module.exports = {
     // options below to some value.
     //
     development: {
-     host: "127.0.0.1",     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
-     network_id: "*",       // Any network (default: none)
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
     },
     testnet: {
       provider: () => new HDWalletProvider({
@@ -65,6 +65,13 @@ module.exports = {
       network_id: "97",
       gas: 2000000,
       gasPrice: 6300000000
+    },
+    rinkeby: {
+      provider: () => new HDWalletProvider(
+        MNEMONIC,
+        "https://rinkeby.infura.io/v3/bc0266c92ce34146865122a0b095f44c",
+      ),
+      network_id: 4,
     },
     bscMainnet: {
       provider: () => new HDWalletProvider({
@@ -122,19 +129,19 @@ module.exports = {
 
   // Configure your compilers
   compilers:
-    {
-      solc: {
-        version: "0.8.4",       // Fetch exact version from solc-bin (default: truffle's version)
-        // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-        settings: {          // See the solidity docs for advice about optimization and evmVersion
-         optimizer: {
-           enabled: true,
-        //    runs: 200
-         },
+  {
+    solc: {
+      version: "0.8.4",       // Fetch exact version from solc-bin (default: truffle's version)
+      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      settings: {          // See the solidity docs for advice about optimization and evmVersion
+        optimizer: {
+          enabled: true,
+          //    runs: 200
+        },
         //  evmVersion: "byzantium"
-        }
       }
-    },
+    }
+  },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
   // false to enabled: true. The default storage location can also be
@@ -147,13 +154,13 @@ module.exports = {
   // $ truffle migrate --reset --compile-all
   //
   // db: {
-    // enabled: false,
-    // host: "127.0.0.1",
-    // adapter: {
-    //   name: "sqlite",
-    //   settings: {
-    //     directory: ".db"
-    //   }
-    // }
+  // enabled: false,
+  // host: "127.0.0.1",
+  // adapter: {
+  //   name: "sqlite",
+  //   settings: {
+  //     directory: ".db"
+  //   }
+  // }
   // }
 };
