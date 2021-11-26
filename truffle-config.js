@@ -56,43 +56,51 @@ module.exports = {
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
+
     testnet: {
-      provider: new HDWalletProvider({
-        mnemonic: MNEMONIC == null ? null : {
-          phrase: MNEMONIC
-        },
-        privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
-        providerOrUrl: "https://data-seed-prebsc-2-s2.binance.org:8545/",
-        chainId: 97
-      }),
-      gas: 2000000,
-      gasPrice: 6300000000
+      provider: function() {
+        return new HDWalletProvider(MNEMONIC, "https://data-seed-prebsc-2-s2.binance.org:8545/");
+      },
+      network_id: 97,
     },
-    bscMainnet: {
-      provider: new HDWalletProvider({
-        mnemonic: MNEMONIC == null ? null : {
-          phrase: MNEMONIC
-        },
-        privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
-        providerOrUrl: "https://bsc-dataseed.binance.org/",
-        chainId: 56
-      }),
-      gasPrice: 6300000000
-    },
-    mainnet: {
-      provider: new HDWalletProvider(
-        {
-          mnemonic: MNEMONIC == null ? null : {
-            phrase: MNEMONIC
-          },
-          privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
-          providerOrUrl: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
-          chainId: 1
-        },
-      ),
-      gas: 2000000,
-      gasPrice: 160463534099,
-    },
+
+    // testnet: {
+    //   provider: new HDWalletProvider({
+    //     mnemonic: MNEMONIC == null ? null : {
+    //       phrase: MNEMONIC
+    //     },
+    //     privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
+    //     providerOrUrl: "https://data-seed-prebsc-2-s2.binance.org:8545/",
+    //     chainId: 97
+    //   }),
+    //   gas: 2000000,
+    //   gasPrice: 6300000000
+    // },
+    // bscMainnet: {
+    //   provider: new HDWalletProvider({
+    //     mnemonic: MNEMONIC == null ? null : {
+    //       phrase: MNEMONIC
+    //     },
+    //     privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
+    //     providerOrUrl: "https://bsc-dataseed.binance.org/",
+    //     chainId: 56
+    //   }),
+    //   gasPrice: 6300000000
+    // },
+    // mainnet: {
+    //   provider: new HDWalletProvider(
+    //     {
+    //       mnemonic: MNEMONIC == null ? null : {
+    //         phrase: MNEMONIC
+    //       },
+    //       privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
+    //       providerOrUrl: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
+    //       chainId: 1
+    //     },
+    //   ),
+    //   gas: 2000000,
+    //   gasPrice: 160463534099,
+    // },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
