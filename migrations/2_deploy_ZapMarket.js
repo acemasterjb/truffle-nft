@@ -1,10 +1,15 @@
 const BigNumber = require("bn.js");
 var Web3 = require('web3');
 
-const ZapMarket = artifacts.require("ZapMarket");
 const ZapToken = artifacts.require("ZapTokenBSC");
+const ZapVault = artifacts.require('ZapVault');
+const ZapMarket = artifacts.require("ZapMarket");
+const AuctionHouse = artifacts.require("AuctionHouse");
+const ZapMediaImp = artifacts.require("ZapMedia");
+const MediaFactory = artifacts.require("MediaFactory");
+const ZapMedia = artifacts.require("ZapMedia");
 
-module.exports = async function(deployer, network) {
+module.exports = async function (deployer, network) {
     // Deployed ZapToken on Ethereum Mainnet
     const ethMainAddress = '0x6781a0f84c7e9e846dcb84a9a5bd49333067b104';
 
