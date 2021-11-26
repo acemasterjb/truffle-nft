@@ -21,9 +21,9 @@
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-var MNEUMONIC = null;
-if (!(process.env.MNEUMONIC == null) || !(process.env.MNEUMONIC == "")) {
-  MNEUMONIC = process.env.MNEUMONIC;
+var MNEMONIC = null;
+if (!(process.env.MNEMONIC == null) || !(process.env.MNEMONIC == "")) {
+  MNEMONIC = process.env.MNEMONIC;
 }
 
 var PRIVATE_KEYS = process.env.PRIVATE_KEYS.split(",");
@@ -58,8 +58,8 @@ module.exports = {
     },
     testnet: {
       provider: new HDWalletProvider({
-        mnemonic: MNEUMONIC == null ? null : {
-          phrase: MNEUMONIC
+        mnemonic: MNEMONIC == null ? null : {
+          phrase: MNEMONIC
         },
         privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
         providerOrUrl: "https://data-seed-prebsc-2-s2.binance.org:8545/",
@@ -70,8 +70,8 @@ module.exports = {
     },
     bscMainnet: {
       provider: new HDWalletProvider({
-        mnemonic: MNEUMONIC == null ? null : {
-          phrase: MNEUMONIC
+        mnemonic: MNEMONIC == null ? null : {
+          phrase: MNEMONIC
         },
         privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
         providerOrUrl: "https://bsc-dataseed.binance.org/",
@@ -82,8 +82,8 @@ module.exports = {
     mainnet: {
       provider: new HDWalletProvider(
         {
-          mnemonic: MNEUMONIC == null ? null : {
-            phrase: MNEUMONIC
+          mnemonic: MNEMONIC == null ? null : {
+            phrase: MNEMONIC
           },
           privateKeys: PRIVATE_KEYS == [] ? null : PRIVATE_KEYS,
           providerOrUrl: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
@@ -93,9 +93,6 @@ module.exports = {
       gas: 2000000,
       gasPrice: 160463534099,
     },
-    etherscan: {
-      apikey: process.env.ETHERSCAN
-    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -122,7 +119,9 @@ module.exports = {
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
   },
-
+  etherscan: {
+    apikey: process.env.ETHERSCAN == null ? null : process.env.ETHERSCAN
+  },
   // Set default mocha options here, use special reporters etc.
   mocha: {
     timeout: 1000000
