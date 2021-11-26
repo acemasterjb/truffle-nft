@@ -1,7 +1,6 @@
 const BigNumber = require("bn.js");
 var Web3 = require('web3');
 
-const ZapToken = artifacts.require("ZapTokenBSC");
 const ZapVault = artifacts.require('ZapVault');
 const ZapMarket = artifacts.require("ZapMarket");
 const AuctionHouse = artifacts.require("AuctionHouse");
@@ -10,6 +9,8 @@ const MediaFactory = artifacts.require("MediaFactory");
 const ZapMedia = artifacts.require("ZapMedia");
 
 module.exports = async function (deployer, network) {
+
+    console.log("NETWORK", network)
     // Deployed ZapToken on Ethereum Mainnet
     const ethMainAddress = '0x6781a0f84c7e9e846dcb84a9a5bd49333067b104';
 
@@ -38,7 +39,7 @@ module.exports = async function (deployer, network) {
     var contractURI = '';
 
     // Will store the network name
-    var network = '';
+    var dep_network = '';
 
     var ZapToken;
 
@@ -59,6 +60,14 @@ module.exports = async function (deployer, network) {
             symbol = 'ZAP'
             contractURI = 'https://bafybeiev76hwk2gu7xmy5h3dn2f6iquxkhu4dhwpjgmt6ookrn6ykbtfi4.ipfs.dweb.link/mainnet'
             dep_network = "Ethereum Mainnet"
+            break;
+
+        // Rinkeby deployment
+        case "rinkeby-fork":
+            tokenAddress = rinkebyAddress;
+            symbol = "ZAPRKBY"
+            contractURI = 'https://bafybeiev76hwk2gu7xmy5h3dn2f6iquxkhu4dhwpjgmt6ookrn6ykbtfi4.ipfs.dweb.link/rinkeby';
+            dep_network = "Rinkeby"
             break;
 
         // BSC Testnet deployment
@@ -84,7 +93,8 @@ module.exports = async function (deployer, network) {
         },
     };
 
-    console.log("\nContracts deploying to: ", dep_network)
-    console.log("Deployer address is: ", signers[0].address)
-    console.log("With starting balance: ", accounts[0], "\n")
+
+    // console.log("With starting balance: ", accounts[0], "\n")
+
+    // const zapVault = await deployer.deploy(ZapVault, tokenAddress)
 }
